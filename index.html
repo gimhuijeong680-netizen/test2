@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>emora Brand Color</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <script>document.documentElement.classList.add("js");</script>
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <!-- A. Hero: logo with construction grid -->
+  <header class="hero">
+    <p class="hero__caption body-md">슬로건, 로고 영상 제작</p>
+    <button class="logo" type="button" aria-pressed="false" aria-label="emora 로고 — 클릭하면 가이드 그리드를 고정합니다">
+      <img class="logo__grid" src="assets/emora-logo-grid.svg" width="604" height="185.185" alt="" />
+      <img class="logo__mark" src="assets/emora-logo.svg" width="496.043" height="74.5679" alt="emora" />
+    </button>
+  </header>
+
+  <main>
+    <!-- B. Intro -->
+    <section class="intro reveal" aria-labelledby="brand-color-title">
+      <h1 id="brand-color-title" class="intro__title title-sm">Brand Color</h1>
+      <div class="intro__body body-md">
+        <p>건강하고 에너지를 담은 터콰이즈 색상을 통해 emora의 톤과 무드를 담았습니다.<br />
+        설정한 emora 터콰이즈는 이모라가 개입한 ‘틈’을 상징하며, ~~</p>
+        <p>이모라 감정색깔 어쩌구 저저구</p>
+      </div>
+    </section>
+
+    <!-- C. Palette — each swatch copies its HEX on click -->
+    <section class="palette" aria-label="emora 컬러 팔레트">
+      <div class="palette__col palette__col--light">
+        <button class="swatch swatch--light reveal" style="--swatch: var(--emora-light)" data-hex="E6FBF9" type="button">
+          <span class="swatch__state swatch__state--body">Light</span>
+          <span class="swatch__hint" aria-hidden="true"></span>
+        </button>
+        <button class="swatch swatch--light reveal" style="--swatch: var(--emora-light-hover)" data-hex="DAF9F7" type="button">
+          <span class="swatch__state swatch__state--body">Hover</span>
+          <span class="swatch__hint" aria-hidden="true"></span>
+        </button>
+        <button class="swatch swatch--light swatch--hero reveal" style="--swatch: var(--emora-light-active)" data-hex="B3F2EE" type="button">
+          <span class="swatch__info swatch__info--compact">
+            <span class="swatch__name">Emora Turquoise Light</span>
+            <span class="swatch__values">
+              <span>HEX</span><span>B3F2EE</span>
+              <span>RGB</span><span>179,242,238</span>
+            </span>
+          </span>
+          <span class="swatch__state">Active</span>
+          <span class="swatch__hint" aria-hidden="true"></span>
+        </button>
+        <button class="swatch swatch--light swatch--mint reveal" style="--swatch: var(--emora-mint)" data-hex="BFFFD1" type="button">
+          <span class="swatch__info swatch__info--mint">
+            <span class="swatch__name">Emora Mint Green</span>
+            <span class="swatch__values">
+              <span>HEX</span><span>BFFFD1</span>
+              <span>RGB</span><span>191,255,209</span>
+            </span>
+          </span>
+          <span class="swatch__hint" aria-hidden="true"></span>
+        </button>
+      </div>
+
+      <div class="palette__col palette__col--turquoise">
+        <button class="swatch swatch--dark swatch--hero reveal" style="--swatch: var(--emora-turquoise)" data-hex="09D5C7" type="button">
+          <span class="swatch__info">
+            <span class="swatch__name">Emora Turquoise Blue</span>
+            <span class="swatch__values">
+              <span>HEX</span><span>09D5C7</span>
+              <span>RGB</span><span>9,213,199</span>
+            </span>
+          </span>
+          <span class="swatch__state">Normal</span>
+          <span class="swatch__hint" aria-hidden="true"></span>
+        </button>
+        <button class="swatch swatch--dark reveal" style="--swatch: var(--emora-turquoise-hover)" data-hex="08C0B3" type="button">
+          <span class="swatch__state">Hover</span>
+          <span class="swatch__hint" aria-hidden="true"></span>
+        </button>
+        <button class="swatch swatch--dark reveal" style="--swatch: var(--emora-turquoise-active)" data-hex="07AA9F" type="button">
+          <span class="swatch__state">Active</span>
+          <span class="swatch__hint" aria-hidden="true"></span>
+        </button>
+        <button class="swatch swatch--dark reveal" style="--swatch: var(--emora-turquoise-dark)" data-hex="07A095" type="button">
+          <span class="swatch__state">Dark</span>
+          <span class="swatch__hint" aria-hidden="true"></span>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

@@ -1,0 +1,276 @@
+/* ── Design tokens (Figma: emora color / 기획서 styles) ─────────────── */
+:root {
+  --emora-light: #e6fbf9;          /* emora color/Light */
+  --emora-light-hover: #daf9f7;    /* emora color/Light :hover */
+  --emora-light-active: #b3f2ee;   /* emora color/Light :active */
+  --emora-mint: #bfffd1;
+  --emora-turquoise: #09d5c7;
+  --emora-turquoise-hover: #08c0b3;
+  --emora-turquoise-active: #07aa9f;
+  --emora-turquoise-dark: #07a095;
+
+  --text-black: #000;
+  --text-body-gray: #656565;       /* 기획서/body_gray */
+  --text-number: #8c8c8c;          /* 기획서/number */
+  --text-on-color: #fbfbfb;        /* 기획서/back_white */
+
+  --font: "Pretendard", "Pretendard Variable", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --split: calc(50% + 25px);       /* left edge of the right column */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--text-black);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, p { margin: 0; }
+
+button {
+  font: inherit;
+  color: inherit;
+  border: 0;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+}
+
+/* ── Typography ─────────────────────────────────────────────────────── */
+.title-sm { font-size: 25px; font-weight: 600; line-height: 1.4; }   /* 기획서/title_sm */
+.body-md  { font-size: 20px; font-weight: 500; line-height: 1.45; }  /* 기획서/body_md */
+
+/* ── A. Hero ────────────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  height: 502px;
+  padding-top: 158px;
+  background: var(--emora-light-active);
+  display: flex;
+  justify-content: center;
+}
+
+.hero__caption {
+  position: absolute;
+  top: 73px;
+  left: var(--split);
+  white-space: nowrap;
+}
+
+.logo {
+  position: relative;
+  width: min(604px, 100% - 32px);
+  aspect-ratio: 604 / 185.185;
+  align-self: flex-start;
+  border-radius: 4px;
+}
+
+.logo img {
+  position: absolute;
+  display: block;
+  max-width: none;
+  height: auto;
+}
+
+.logo__grid {
+  inset: 0;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.5s var(--ease-out);
+}
+
+/* Logo-only mark sits exactly where Group 38 is inside Group 176 */
+.logo__mark {
+  left: calc(41.946 / 604 * 100%);
+  top: calc(55.931 / 185.185 * 100%);
+  width: calc(496.043 / 604 * 100%);
+  transition: transform 0.6s var(--ease-out), opacity 0.8s var(--ease-out);
+}
+
+.logo:hover .logo__grid,
+.logo:focus-visible .logo__grid,
+.logo[aria-pressed="true"] .logo__grid,
+.logo.is-intro .logo__grid { opacity: 1; }
+
+.logo:focus-visible { outline: 2px solid var(--emora-turquoise-dark); outline-offset: 8px; }
+
+.js .logo.is-loading .logo__mark { opacity: 0; transform: translateY(12px); }
+
+/* ── B. Intro ───────────────────────────────────────────────────────── */
+.intro {
+  display: grid;
+  grid-template-columns: var(--split) 1fr;
+  padding: 76px 0 93px;
+}
+
+.intro__title { padding-left: 200px; }
+.intro__body { margin-top: 6px; }
+.intro__body p + p { margin-top: 29px; }  /* the empty line between paragraphs */
+
+/* ── C. Palette ─────────────────────────────────────────────────────── */
+.palette {
+  display: grid;
+  grid-template-columns: var(--split) 1fr;
+}
+
+.palette__col { display: flex; flex-direction: column; }
+
+/* Row heights from the Figma frame (each column totals 578px) */
+.palette__col--light .swatch:nth-child(1) { height: 95px; }
+.palette__col--light .swatch:nth-child(2) { height: 95px; }
+.palette__col--light .swatch:nth-child(3) { height: 294px; }
+.palette__col--light .swatch:nth-child(4) { height: 94px; }
+.palette__col--turquoise .swatch:nth-child(1) { height: 287px; }
+.palette__col--turquoise .swatch:nth-child(2) { height: 96px; }
+.palette__col--turquoise .swatch:nth-child(3) { height: 98px; }
+.palette__col--turquoise .swatch:nth-child(4) { height: 97px; }
+
+.swatch {
+  --pad-x: 41px;
+  position: relative;
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: var(--swatch);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  outline: none;
+}
+
+.swatch--light { color: var(--text-number); }
+.swatch--dark  { --pad-x: 28px; color: var(--text-on-color); }
+
+.swatch:focus-visible { box-shadow: inset 0 0 0 2px currentColor; }
+
+/* State label, pinned to the bottom-left of each row */
+.swatch__state {
+  position: absolute;
+  left: var(--pad-x);
+  bottom: 8px;
+  line-height: 1.4;
+  transition: transform 0.3s var(--ease-out);
+}
+.swatch--dark .swatch__state { bottom: 4px; }
+.swatch__state--body { color: var(--text-body-gray); }
+
+/* Name + HEX/RGB block */
+.swatch__info {
+  position: absolute;
+  top: 41px;
+  left: var(--pad-x);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.swatch__name { line-height: 1.5; }
+
+.swatch__values {
+  display: grid;
+  grid-template-columns: 70.45px auto;
+  grid-auto-rows: 24px;
+  line-height: 1.4;
+}
+
+/* Emora Turquoise Light: smaller caption set */
+.swatch__info--compact { top: 22px; left: 43px; gap: 15.6px; }
+.swatch__info--compact .swatch__name { font-size: 14.526px; line-height: 1.2; }
+.swatch__info--compact .swatch__values { font-size: 12.347px; line-height: 1.2; grid-auto-rows: 15.98px; letter-spacing: 0; }
+
+/* Emora Mint Green */
+.swatch__info--mint { top: 13px; gap: 13px; }
+.swatch__info--mint .swatch__name { font-size: 14.526px; line-height: 1.2; }
+
+/* ── Swatch interaction: hint + copy feedback ───────────────────────── */
+.swatch__hint {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  line-height: 1.4;
+  letter-spacing: 0;
+  background: rgb(255 255 255 / 0.55);
+  color: var(--text-body-gray);
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.2s ease, transform 0.3s var(--ease-out);
+  pointer-events: none;
+  white-space: nowrap;
+}
+.swatch--dark .swatch__hint { background: rgb(0 0 0 / 0.14); color: var(--text-on-color); }
+
+.swatch:hover .swatch__hint,
+.swatch:focus-visible .swatch__hint,
+.swatch.is-copied .swatch__hint { opacity: 1; transform: none; }
+
+.swatch:hover .swatch__state,
+.swatch:focus-visible .swatch__state { transform: translateX(4px); }
+
+.swatch:active .swatch__hint { transform: scale(0.96); }
+
+/* ── Toast ──────────────────────────────────────────────────────────── */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: #111;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.4;
+  opacity: 0;
+  transform: translate(-50%, 12px);
+  transition: opacity 0.2s ease, transform 0.35s var(--ease-out);
+  pointer-events: none;
+}
+.toast.is-visible { opacity: 1; transform: translate(-50%, 0); }
+.toast__chip {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.3);
+}
+
+/* ── Scroll reveal (only when JS is running) ────────────────────────── */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 70ms);
+}
+.js .reveal.is-visible { opacity: 1; transform: none; }
+
+/* ── Responsive ─────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  :root { --split: 100%; }
+
+  .hero { height: auto; padding: 96px 16px 72px; }
+  .hero__caption { left: 0; right: 0; top: 40px; text-align: center; font-size: 16px; }
+
+  .intro { grid-template-columns: 1fr; gap: 16px; padding: 56px 16px 64px; }
+  .intro__title { padding-left: 0; }
+  .intro__body { margin-top: 0; font-size: 17px; }
+
+  .palette { grid-template-columns: 1fr; }
+  .swatch { --pad-x: 16px; }
+  .swatch__info--compact { left: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after { transition-duration: 0.01ms !important; transition-delay: 0s !important; }
+}
